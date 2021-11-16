@@ -128,12 +128,12 @@ export default {
 
           <router-link tag="a" to="/" class="logo logo-light">
             <span class="logo-sm">
-              <img src="@/assets/images/Xtorage.cloud.svg" alt height="22" />
+              <img src="@/assets/picture/hamian.svg" alt height="24" />
             </span>
             <span class="logo-lg">
-              <img src="@/assets/images/Xtorage.cloud.svg" alt height="19" />
-              <span style="color:white">
-                XTORAGE
+              <img src="@/assets/picture/hamian.svg" alt height="22" />
+              <span  style="color:white">
+                HAMIAN
               </span>
             </span>
           </router-link>
@@ -647,14 +647,14 @@ export default {
           menu-class="dropdown-menu-end"
         >
           <template v-slot:button-content>
-            <img
+            <img 
               class="rounded-circle header-profile-user"
-              :src="imageUrl"
+              src="@/assets/images/users/1.jpg"
               alt="A"
             />
-            <span class="d-none d-xl-inline-block ms-1">{{
-             username
-            }}</span>
+            <span class="d-none d-xl-inline-block ms-1">
+              {{username}}
+            </span>
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
           </template>
           <!-- item-->

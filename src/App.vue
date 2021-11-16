@@ -3,7 +3,7 @@ import appConfig from "@/app.config";
 import { Vue ,Component } from 'vue-property-decorator';
 
 import { notificationMethods } from "@/state/helpers";
-import CommonService from '@/services/commonService'
+
 import VModal from 'vue-js-modal';
 
 import Dialog from "@/components/common/Dialog.vue";
