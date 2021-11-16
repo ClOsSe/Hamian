@@ -1,3 +1,4 @@
+// electron is another project 
 const { ipcRenderer} = window.require('electron');
 export default class BaseLocalService
 {
