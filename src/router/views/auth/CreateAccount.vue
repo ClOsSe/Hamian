@@ -314,10 +314,10 @@ export default {
               >Login</router-link
             >
           </p>
-          <p>
-            © {{ new Date().getFullYear() }} Skote. Crafted with
+          <!-- <p>
+            © {{ new Date().getFullYear() }} Hamian. Crafted with
             <i class="mdi mdi-heart text-danger"></i> by Themesbrand
-          </p>
+          </p> -->
         </div>
       </div>
       <!-- end col -->
