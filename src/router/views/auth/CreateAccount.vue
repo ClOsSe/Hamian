@@ -31,9 +31,8 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        email: "",
         password: "",
+        confirmPassword: "",
       },
       submitted: false,
       regError: null,
@@ -135,8 +134,8 @@ export default {
             <div class="row">
               <div class="col-7">
                 <div class="text-primary p-4">
-                  <h5 class="text-primary">Free Register</h5>
-                  <p>Get your free Skote account now.</p>
+                  <h5 class="text-primary">Getting Started</h5>
+                  <p>Get your free Hamian account now.</p>
                 </div>
               </div>
               <div class="col-5 align-self-end">
@@ -154,7 +153,7 @@ export default {
                 <div class="avatar-md profile-user-wid mb-4">
                   <span class="avatar-title rounded-circle bg-light">
                     <img
-                      src="@/assets/images/logo.svg"
+                      src="@/assets/picture/hamian.svg"
                       alt
                       class="rounded-circle"
                       height="34"
@@ -188,47 +187,7 @@ export default {
             </div>
 
             <b-form class="p-2" @submit.prevent="tryToRegisterIn">
-              <b-form-group
-              class="mb-3"
-                id="email-group"
-                label="Username"
-                label-for="username"
-              >
-                <b-form-input
-                  id="username"
-                  v-model="user.username"
-                  type="text"
-                  placeholder="Enter username"
-                  :class="{
-                    'is-invalid': submitted && $v.user.username.$error,
-                  }"
-                ></b-form-input>
-                <div
-                  v-if="submitted && !$v.user.username.required"
-                  class="invalid-feedback"
-                >
-                  Username is required.
-                </div>
-              </b-form-group>
-
-              <b-form-group class="mb-3" id="fullname-group" label="Email" label-for="email">
-                <b-form-input
-                  id="email"
-                  v-model="user.email"
-                  type="email"
-                  placeholder="Enter email"
-                  :class="{ 'is-invalid': submitted && $v.user.email.$error }"
-                ></b-form-input>
-                <div
-                  v-if="submitted && $v.user.email.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.user.email.required">Email is required.</span>
-                  <span v-if="!$v.user.email.email"
-                    >Please enter valid email.</span
-                  >
-                </div>
-              </b-form-group>
+            
 
               <b-form-group
               class="mb-3"
@@ -252,6 +211,28 @@ export default {
                   Password is required.
                 </div>
               </b-form-group>
+              <b-form-group
+              class="mb-3"
+                id="password-group"
+                label="Password"
+                label-for="confirmPassword"
+              >
+                <b-form-input
+                  id="confirmPassword"
+                  v-model="user.confirmPassword"
+                  type="confirmPassword"
+                  placeholder="Enter Confirm Password"
+                  :class="{
+                    'is-invalid': submitted && $v.user.password.$error,
+                  }"
+                ></b-form-input>
+                <div
+                  v-if="submitted && !$v.user.password.required"
+                  class="invalid-feedback"
+                >
+                  Confirm Password is required.
+                </div>
+              </b-form-group>
 
               <div class="mt-4 d-grid">
                 <b-button type="submit" variant="primary" class="btn-block"
@@ -260,42 +241,11 @@ export default {
               </div>
 
               <div class="mt-4 text-center">
-                <h5 class="font-size-14 mb-3">Sign up using</h5>
-
-                <ul class="list-inline">
-                  <li class="list-inline-item">
-                    <a
-                      href="javascript: void(0);"
-                      class="social-list-item bg-primary text-white border-primary"
-                    >
-                      <i class="mdi mdi-facebook"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a
-                      href="javascript: void(0);"
-                      class="social-list-item bg-info text-white border-info"
-                    >
-                      <i class="mdi mdi-twitter"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a
-                      href="javascript: void(0);"
-                      class="social-list-item bg-danger text-white border-danger"
-                    >
-                      <i class="mdi mdi-google"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="mt-4 text-center">
                 <p class="mb-0">
-                  By registering you agree to the Skote
-                  <a href="javascript: void(0);" class="text-primary"
-                    >Terms of Use</a
-                  >
+                  By registering you agree to the Hamian
+                  <a href="javascript: void(0);" class="text-primary">
+                    Terms of Use
+                  </a>
                 </p>
               </div>
             </b-form>
