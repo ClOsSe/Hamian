@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 import {
   authMethods,
@@ -9,6 +9,8 @@ import {
 import Layout from "../../layouts/auth";
 import appConfig from "@/app.config";
 import { mapState } from "vuex";
+
+// import StorageService from "src/localService/storageService";
 
 import { required, email } from "vuelidate/lib/validators";
 
@@ -43,13 +45,6 @@ export default {
   },
   validations: {
     user: {
-      username: {
-        required,
-      },
-      email: {
-        required,
-        email,
-      },
       password: {
         required,
       },
@@ -75,50 +70,67 @@ export default {
       if (this.$v.$invalid) {
         return;
       } else {
-        if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-          this.tryingToRegister = true;
-          // Reset the regError if it existed.
-          this.regError = null;
-          return (
-            this.register({
-              email: this.user.email,
-              password: this.user.password,
-            })
-              // eslint-disable-next-line no-unused-vars
-              .then((token) => {
-                this.tryingToRegister = false;
-                this.isRegisterError = false;
-                this.registerSuccess = true;
-                if (this.registerSuccess) {
-                  this.$router.push(
-                    this.$route.query.redirectFrom || {
-                      name: "default",
-                    }
-                  );
-                }
-              })
-              .catch((error) => {
-                this.tryingToRegister = false;
-                this.regError = error ? error : "";
-                this.isRegisterError = true;
-              })
-          );
-        } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
-          const { email, username, password } = this.user;
-          if (email && username && password) {
-            this.registeruser(this.user);
+
+      if(this.user.password.length > 5){
+        if(this.user.password === this.user.confirmPassword){
+            this.registerSuccess = true;
           }
-        } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
-          axios
-            .post("http://127.0.0.1:8000/api/register", {
-              username: this.user.username,
-              email: this.user.email,
-              password: this.user.password,
-            })
-            .then((res) => {
-              return res;
-            });
+          else{
+            // TODO:validate
+            console.log('password and confirmPassword is not the same')
+            this.registerSuccess = false;
+          }
         }
+        else{
+          // TODO:password validate
+          console.log('enter your password')
+        }
+
+
+        // if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
+        //   this.tryingToRegister = true;
+        //   // Reset the regError if it existed.
+        //   this.regError = null;
+        //   return (
+        //     this.register({
+        //       email: this.user.email,
+        //       password: this.user.password,
+        //     })
+        //       // eslint-disable-next-line no-unused-vars
+        //       .then((token) => {
+        //         this.tryingToRegister = false;
+        //         this.isRegisterError = false;
+        //         this.registerSuccess = true;
+        //         if (this.registerSuccess) {
+        //           this.$router.push(
+        //             this.$route.query.redirectFrom || {
+        //               name: "default",
+        //             }
+        //           );
+        //         }
+        //       })
+        //       .catch((error) => {
+        //         this.tryingToRegister = false;
+        //         this.regError = error ? error : "";
+        //         this.isRegisterError = true;
+        //       })
+        //   );
+        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
+        //   const { email, username, password } = this.user;
+        //   if (email && username && password) {
+        //     this.registeruser(this.user);
+        //   }
+        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
+        //   axios
+        //     .post("http://127.0.0.1:8000/api/register", {
+        //       username: this.user.username,
+        //       email: this.user.email,
+        //       password: this.user.password,
+        //     })
+        //     .then((res) => {
+        //       return res;
+        //     });
+        // }
       }
     },
   },
@@ -264,10 +276,6 @@ export default {
               >Login</router-link
             >
           </p>
-          <!-- <p>
-            © {{ new Date().getFullYear() }} Hamian. Crafted with
-            <i class="mdi mdi-heart text-danger"></i> by Themesbrand
-          </p> -->
         </div>
       </div>
       <!-- end col -->
