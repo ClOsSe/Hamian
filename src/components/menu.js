@@ -1,4 +1,5 @@
 export const menuItems = [
+    
     {
         id: 1,
         label: "menuitems.menu.text",
@@ -9,6 +10,20 @@ export const menuItems = [
         label: "menuitems.filemanager.text",
         link: "/",
         icon: "bx-file" 
+    },
+    {
+        id: 2,
+        label: "menuitems.login.text",
+        isTitle: false,
+        icon:'mdi mdi-login',
+        link: "/Login",
+    },
+    {
+        id: 3,
+        label: "menuitems.createaccount.text",
+        isTitle: false,
+        icon:'mdi mdi-wallet',
+        link: "/CreateAccount",
     },
     
     {

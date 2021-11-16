@@ -6,16 +6,19 @@ export default [
     name: 'default',
     component: () => import('./views/Index')
   },
-  // {
-  //   path: '/login',
-  //   name: 'login',
-  //   component: () => import('./views/auth/Login.vue')
-  // },
-  // {
-  //   path: '/CreateAccount',
-  //   name: 'CreateAccount',
-  //   component: () => import('./views/auth/CreateAccount.vue')
-  // },
+  {
+    path: '/login',
+    name: 'login',
+    meta:{isPublic:true},
+    component: () => import('./views/auth/Login.vue')
+  },
+  {
+    path: '/CreateAccount',
+    name: 'CreateAccount',
+    meta:{isPublic:true},
+    // component: () => import('./views/auth/CreateAccount.vue')
+    component: () => import('./views/auth/Register.vue')
+  },
   // {
   //   path: '/LoginWithFile',
   //   name: 'loginwithfile',
