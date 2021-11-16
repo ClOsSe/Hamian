@@ -16,8 +16,7 @@ export default [
     path: '/CreateAccount',
     name: 'CreateAccount',
     meta:{isPublic:true},
-    // component: () => import('./views/auth/CreateAccount.vue')
-    component: () => import('./views/auth/Register.vue')
+    component: () => import('./views/auth/CreateAccount.vue')
   },
   // {
   //   path: '/LoginWithFile',
