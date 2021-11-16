@@ -11,6 +11,8 @@ import { mapState } from "vuex";
 
 import appConfig from "@/app.config";
 import { required, email } from "vuelidate/lib/validators";
+// import StorageService from "@/localService/storageService";
+
 
 /**
  * Login component
@@ -30,8 +32,7 @@ export default {
   },
   data() {
     return {
-      email: "admin@themesbrand.com",
-      password: "123456",
+      password: "",
       submitted: false,
       authError: null,
       tryingToLogIn: false,
@@ -39,10 +40,6 @@ export default {
     };
   },
   validations: {
-    email: {
-      required,
-      email,
-    },
     password: {
       required,
     },
@@ -59,58 +56,69 @@ export default {
     ...notificationMethods,
     // Try to log the user in with the username
     // and password they provided.
-    tryToLogIn() {
+    async tryToLogIn() {
       this.submitted = true;
       // stop here if form is invalid
       this.$v.$touch();
 
       if (this.$v.$invalid) {
+        console.log('this is invalid')
         return;
       } else {
-        if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-          this.tryingToLogIn = true;
-          // Reset the authError if it existed.
-          this.authError = null;
-          return (
-            this.logIn({
-              email: this.email,
-              password: this.password,
-            })
-              // eslint-disable-next-line no-unused-vars
-              .then((token) => {
-                this.tryingToLogIn = false;
-                this.isAuthError = false;
-                // Redirect to the originally requested page, or to the home page
-                this.$router.push(
-                  this.$route.query.redirectFrom || {
-                    name: "default",
-                  }
-                );
-              })
-              .catch((error) => {
-                this.tryingToLogIn = false;
-                this.authError = error ? error : "";
-                this.isAuthError = true;
-              })
-          );
-        } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
-          const { email, password } = this;
-          if (email && password) {
-            this.login({
-              email,
-              password,
-            });
+        if(this.password.length > 5){
+          // var data=await StorageService.login(this.password);
+          // if(data)
+            // window.location.href='/';
+            // console.log('login------->',data)
+          // }
+          // else{
+            // console.log(res)
           }
-        } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
-          axios
-            .post("http://127.0.0.1:8000/api/login", {
-              email: this.email,
-              password: this.password,
-            })
-            .then((res) => {
-              return res;
-            });
-        }
+
+
+        // if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
+        //   this.tryingToLogIn = true;
+        //   // Reset the authError if it existed.
+        //   this.authError = null;
+        //   return (
+        //     this.logIn({
+        //       password: this.password,
+        //     })
+        //       .then((token) => {
+
+        //         this.tryingToLogIn = false;
+        //         this.isAuthError = false;
+        //         this.$router.push(
+        //           this.$route.query.redirectFrom || {
+        //             name: "default",
+        //           }
+        //         );
+        //       })
+        //       .catch((error) => {
+        //         this.tryingToLogIn = false;
+        //         this.authError = error ? error : "";
+        //         this.isAuthError = true;
+        //       })
+        //   );
+        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
+        //   console.log('fakebackend')
+        //   const { password } = this;
+        //   if (password) {
+        //     this.login({
+        //       password,
+        //     });
+        //   }
+        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
+        //   console.log('authapi')
+        //   axios
+        //     .post("http://127.0.0.1:8000/api/login", {
+        //       email: this.email,
+        //       password: this.password,
+        //     })
+        //     .then((res) => {
+        //       return res;
+        //     });
+        // }
       }
     },
   },
