@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 import Layout from "../../layouts/auth";
 import {
@@ -7,11 +7,11 @@ import {
   authFackMethods,
   notificationMethods,
 } from "@/state/helpers";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 
 import appConfig from "@/app.config";
 import { required, email } from "vuelidate/lib/validators";
-// import StorageService from "@/localService/storageService";
+import StorageService from "@/localService/storageService";
 
 
 /**
@@ -45,14 +45,14 @@ export default {
     },
   },
   computed: {
-    ...mapState("authfack", ["status"]),
+    // ...mapState("authfack", ["status"]),
     notification() {
       return this.$store ? this.$store.state.notification : null;
     },
   },
   methods: {
     ...authMethods,
-    ...authFackMethods,
+    // ...authFackMethods,
     ...notificationMethods,
     // Try to log the user in with the username
     // and password they provided.
@@ -66,13 +66,13 @@ export default {
         return;
       } else {
         if(this.password.length > 5){
-          // var data=await StorageService.login(this.password);
-          // if(data)
-            // window.location.href='/';
-            // console.log('login------->',data)
-          // }
-          // else{
-            // console.log(res)
+          var data=await StorageService.login(this.password);
+          if(data)
+            window.location.href='/';
+            console.log('login------->',data)
+          }
+          else{
+            console.log('res')
           }
 
 
