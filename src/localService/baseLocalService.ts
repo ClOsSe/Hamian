@@ -1,6 +1,6 @@
 // electron is another project 
-// const { ipcRenderer} = window.require('electron');
-const { ipcRenderer} = require('electron');
+const { ipcRenderer} = window.require('electron');
+// const { ipcRenderer} = require('electron');
 export default class BaseLocalService
 {
     static globalId:string='';
@@ -8,7 +8,6 @@ export default class BaseLocalService
     static temp:any={};
     static run(name:string,data:any):Promise<any>
     {
-        
         return new Promise((res,rej)=>{
             var id=(++this.counter).toString(); 
             ipcRenderer.send('transfer',{id,data,name,globalId:this.globalId});

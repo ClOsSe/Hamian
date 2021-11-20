@@ -7,10 +7,10 @@ import {
   authFackMethods,
   notificationMethods,
 } from "@/state/helpers";
-// import { mapState } from "vuex";
+import { mapState } from "vuex";
 
 import appConfig from "@/app.config";
-import { required, email } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators";
 import StorageService from "@/localService/storageService";
 
 
@@ -45,14 +45,14 @@ export default {
     },
   },
   computed: {
-    // ...mapState("authfack", ["status"]),
+    ...mapState("authfack", ["status"]),
     notification() {
       return this.$store ? this.$store.state.notification : null;
     },
   },
   methods: {
     ...authMethods,
-    // ...authFackMethods,
+    ...authFackMethods,
     ...notificationMethods,
     // Try to log the user in with the username
     // and password they provided.
