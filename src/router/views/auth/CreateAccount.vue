@@ -10,7 +10,7 @@ import Layout from "../../layouts/auth";
 import appConfig from "@/app.config";
 import { mapState } from "vuex";
 
-// import StorageService from "src/localService/storageService";
+import StorageService from "@/localService/storageService";
 
 import { required, email } from "vuelidate/lib/validators";
 
@@ -62,7 +62,7 @@ export default {
     ...notificationMethods,
     // Try to register the user in with the email, username
     // and password they provided.
-    tryToRegisterIn() {
+    async tryToRegisterIn() {
       this.submitted = true;
       // stop here if form is invalid
       this.$v.$touch();
@@ -73,6 +73,8 @@ export default {
 
       if(this.user.password.length > 5){
         if(this.user.password === this.user.confirmPassword){
+          var success=await StorageService.initData(this.user.password,'');
+          console.log(success)
             this.registerSuccess = true;
           }
           else{
@@ -232,7 +234,7 @@ export default {
                 <b-form-input
                   id="confirmPassword"
                   v-model="user.confirmPassword"
-                  type="confirmPassword"
+                  type="password"
                   placeholder="Enter Confirm Password"
                   :class="{
                     'is-invalid': submitted && $v.user.password.$error,
