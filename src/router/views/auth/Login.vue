@@ -74,51 +74,6 @@ export default {
           else{
             console.log('res')
           }
-
-
-        // if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-        //   this.tryingToLogIn = true;
-        //   // Reset the authError if it existed.
-        //   this.authError = null;
-        //   return (
-        //     this.logIn({
-        //       password: this.password,
-        //     })
-        //       .then((token) => {
-
-        //         this.tryingToLogIn = false;
-        //         this.isAuthError = false;
-        //         this.$router.push(
-        //           this.$route.query.redirectFrom || {
-        //             name: "default",
-        //           }
-        //         );
-        //       })
-        //       .catch((error) => {
-        //         this.tryingToLogIn = false;
-        //         this.authError = error ? error : "";
-        //         this.isAuthError = true;
-        //       })
-        //   );
-        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
-        //   console.log('fakebackend')
-        //   const { password } = this;
-        //   if (password) {
-        //     this.login({
-        //       password,
-        //     });
-        //   }
-        // } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
-        //   console.log('authapi')
-        //   axios
-        //     .post("http://127.0.0.1:8000/api/login", {
-        //       email: this.email,
-        //       password: this.password,
-        //     })
-        //     .then((res) => {
-        //       return res;
-        //     });
-        // }
       }
     },
   },
