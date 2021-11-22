@@ -101,6 +101,9 @@
     "createaccount":{
       "text":"Create Account"
     },
+    "locallogin":{
+      "text":"Local Login"
+    },
     "dashboards": {
       "text": "Dashboards",
       "badge": "04",

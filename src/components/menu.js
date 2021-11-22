@@ -25,6 +25,13 @@ export const menuItems = [
         icon:'mdi mdi-wallet',
         link: "/CreateAccount",
     },
+    {
+        id: 3,
+        label: "menuitems.locallogin.text",
+        isTitle: false,
+        icon:'mdi mdi-login',
+        link: "/LocalLogin",
+    },
     
     {
         id: 75,

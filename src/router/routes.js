@@ -23,11 +23,11 @@ export default [
   //   name: 'loginwithfile',
   //   component: () => import('./views/auth/LoginWithFile.vue')
   // },
-  // {
-  //   path: '/LocalLogin',
-  //   name: 'locallogin',
-  //   component: () => import('./views/auth/LocalLogin.vue')
-  // },
+  {
+    path: '/LocalLogin',
+    name: 'locallogin',
+    component: () => import('./views/auth/LocalLogin.vue')
+  },
   
   // {
   //   path: '/ReLink',
