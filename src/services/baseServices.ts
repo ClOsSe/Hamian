@@ -1,4 +1,4 @@
-import Config from "src/common/config";
+import Config from "@/common/config";
 import axios from 'axios';
 export default class BaseServices
 {

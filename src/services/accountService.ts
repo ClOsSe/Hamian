@@ -1,6 +1,6 @@
-import Config from "src/common/config";
-import Account from "src/models/account";
-import TokenModel from "src/models/tokenModel";
+import Config from "@/common/config";
+import Account from "@/models/account";
+import TokenModel from "@/models/tokenModel";
 import BaseServices from "./baseServices";
 
 export default class AccountService

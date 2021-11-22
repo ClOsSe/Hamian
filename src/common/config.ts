@@ -1,8 +1,9 @@
+import SocketService from "src/localService/socketService";
+
+ 
 export default class Config
 {
-    //static server:string="http://localhost:4202/";
-     static server:string="https://api.xtorage.cloud/";
-    static username:string='';
-    static version:string='MVP';
-    static serial:number=1001;
+    static server:string="https://megaapi.hamian-wallet.com/"; 
+    static chainAddress:string="https://telos.greymass.com"; 
+    static soket:SocketService;
 }

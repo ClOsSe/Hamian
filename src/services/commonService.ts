@@ -1,5 +1,5 @@
-import Config from "src/common/config";
-import NetworkModel from "src/models/networkModel";
+import Config from "@/common/config";
+import NetworkModel from "@/models/networkModel";
 import BaseServices from "./baseServices";
 
 export default class CommonService
