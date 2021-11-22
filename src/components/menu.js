@@ -32,6 +32,13 @@ export const menuItems = [
         icon:'mdi mdi-login',
         link: "/LocalLogin",
     },
+    {
+        id: 3,
+        label: "menuitems.loginwithfile.text",
+        isTitle: false,
+        icon:'mdi mdi-login',
+        link: "/LoginWithFile",
+    },
     
     {
         id: 75,

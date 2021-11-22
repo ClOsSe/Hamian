@@ -104,6 +104,9 @@
     "locallogin":{
       "text":"Local Login"
     },
+    "loginwithfile":{
+      "text":"Login With File"
+    },
     "dashboards": {
       "text": "Dashboards",
       "badge": "04",

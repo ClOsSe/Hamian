@@ -18,11 +18,12 @@ export default [
     meta:{isPublic:true},
     component: () => import('./views/auth/CreateAccount.vue')
   },
-  // {
-  //   path: '/LoginWithFile',
-  //   name: 'loginwithfile',
-  //   component: () => import('./views/auth/LoginWithFile.vue')
-  // },
+  {
+    path: '/LoginWithFile',
+    name: 'loginwithfile',
+    meta:{isPublic:true},
+    component: () => import('./views/auth/LoginWithFile.vue')
+  },
   {
     path: '/LocalLogin',
     name: 'locallogin',
