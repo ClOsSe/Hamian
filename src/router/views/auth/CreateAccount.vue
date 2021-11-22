@@ -76,6 +76,7 @@ export default {
           var success=await StorageService.initData(this.user.password,'');
           console.log(success)
             this.registerSuccess = true;
+            this.$router.push('/')
           }
           else{
             // TODO:validate

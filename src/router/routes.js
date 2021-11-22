@@ -26,6 +26,7 @@ export default [
   {
     path: '/LocalLogin',
     name: 'locallogin',
+    meta:{isPublic:true},
     component: () => import('./views/auth/LocalLogin.vue')
   },
   

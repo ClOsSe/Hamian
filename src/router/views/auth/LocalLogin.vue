@@ -34,11 +34,10 @@
             
             <b-form class="p-2" @submit.prevent="tryToLogIn">
             <div  class="col-12 row" align="center">
-                <b-dropdown  variant="outline" id="dropdown-1" :text="selectedAccount.name" class="m-md-2">
-                    <div v-if="account">
-                    <b-dropdown-item  
-                    v-for="(userAccount , index) in account" :key="index"
-                    >First Action</b-dropdown-item>
+                <b-dropdown  variant="outline-secondary " id="dropdown-1" :text="selectedAccount.name" class="m-md-2 w-100">
+                    <div class="col-12" v-for="(userAccount , index) in account" :key="index">
+                    <b-dropdown-item  class="col-12 w-100"
+                    >{{userAccount.name}}</b-dropdown-item>
                     </div>
                 </b-dropdown>
             </div>
@@ -86,8 +85,14 @@ import WalletService from "@/localService/walletService";
 })
 export default class LocalLogin extends Vue{
   data:LoginRequest=new LoginRequest();
-  selectedAccount:StorageAccountModel=new StorageAccountModel();
-  account:StorageAccountModel[]=[];
+//   selectedAccount:StorageAccountModel=new StorageAccountModel();
+  selectedAccount:any={name:'test'}
+  account:StorageAccountModel[]=[
+      {name:'mohamamd'},
+      {name:'mohamamd1'},
+      {name:'mohamamd2'},
+      {name:'mohamamd3'},
+      ];
   showConfirm:boolean=false;
   counter:number=0;
   async reciveLoginRequest(data:any)
@@ -133,4 +138,9 @@ export default class LocalLogin extends Vue{
 }
 </script>
 
-<style lang="scss" module></style>
+<style>
+.dropdown-menu{
+ width: 100%;   
+ text-align: center;
+}    
+</style>
