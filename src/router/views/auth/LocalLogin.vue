@@ -1,3 +1,70 @@
+
+<template>
+  <Layout>
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+          <div class="bg-soft bg-primary">
+            <div class="row">
+              <div class="col-7">
+                <div class="text-primary p-4">
+                  <h5 class="text-primary">Welcome Back !</h5>
+                  <p>Sign in to continue to Hamian.</p>
+                </div>
+              </div>
+              <div class="col-5 align-self-end">
+                <img
+                  src="@/assets/images/profile-img.png"
+                  alt
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div>
+              <router-link tag="a" to="/">
+                <div class="avatar-md profile-user-wid mb-4">
+                  <span class="avatar-title rounded-circle bg-light">
+                    <img src="@/assets/picture/hamian.svg" alt height="34" />
+                  </span>
+                </div>
+              </router-link>
+            </div>
+            
+            <b-form class="p-2" @submit.prevent="tryToLogIn">
+            <div  class="col-12 row" align="center">
+                <b-dropdown  variant="outline" id="dropdown-1" :text="selectedAccount.name" class="m-md-2">
+                    <div v-if="account">
+                    <b-dropdown-item  
+                    v-for="(userAccount , index) in account" :key="index"
+                    >First Action</b-dropdown-item>
+                    </div>
+                </b-dropdown>
+            </div>
+              <div class="mt-5 d-grid">
+                <b-button type="submit" variant="primary" class="btn-block"
+                  >Log In</b-button
+                >
+              </div>
+              <div class="mt-5 text-center">
+                <p class="text-gray">By logging into this application you will be allowing in to interact with your Hamian.</p>
+              </div>
+            </b-form>
+          </div>
+          <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+        
+        <!-- end row -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </Layout>
+</template>
+
 <script lang="ts">
 import Layout from "../../layouts/auth";
 import {Vue , Component , Prop} from "vue-property-decorator"
@@ -65,71 +132,5 @@ export default class LocalLogin extends Vue{
   } 
 }
 </script>
-
-<template>
-  <Layout>
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
-        <div class="card overflow-hidden">
-          <div class="bg-soft bg-primary">
-            <div class="row">
-              <div class="col-7">
-                <div class="text-primary p-4">
-                  <h5 class="text-primary">Welcome Back !</h5>
-                  <p>Sign in to continue to Hamian.</p>
-                </div>
-              </div>
-              <div class="col-5 align-self-end">
-                <img
-                  src="@/assets/images/profile-img.png"
-                  alt
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="card-body pt-0">
-            <div>
-              <router-link tag="a" to="/">
-                <div class="avatar-md profile-user-wid mb-4">
-                  <span class="avatar-title rounded-circle bg-light">
-                    <img src="@/assets/picture/hamian.svg" alt height="34" />
-                  </span>
-                </div>
-              </router-link>
-            </div>
-            
-            <b-form class="p-2" @submit.prevent="tryToLogIn">
-            <div  class="col-12 row" align="center">
-                <!-- <b-dropdown  variant="outline" id="dropdown-1" :text="selectedAccount.name" class="m-md-2">
-                    <div v-if="account">
-                    <b-dropdown-item  
-                    v-for="(userAccount , index) in account" :key="index"
-                    >First Action</b-dropdown-item>
-                    </div>
-                </b-dropdown> -->
-            </div>
-              <div class="mt-5 d-grid">
-                <b-button type="submit" variant="primary" class="btn-block"
-                  >Log In</b-button
-                >
-              </div>
-              <div class="mt-5 text-center">
-                <p class="text-gray">By logging into this application you will be allowing in to interact with your Hamian.</p>
-              </div>
-            </b-form>
-          </div>
-          <!-- end card-body -->
-        </div>
-        <!-- end card -->
-
-        
-        <!-- end row -->
-      </div>
-      <!-- end col -->
-    </div>
-    <!-- end row -->
-  </Layout>
-</template>
 
 <style lang="scss" module></style>
