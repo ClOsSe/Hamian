@@ -6,6 +6,12 @@ export default [
     name: 'default',
     component: () => import('./views/Index')
   },
+  { 
+    path: '/networks/:chainId', 
+    name:'walletNetwork',
+    component: () => import('./views/wallet/Networks.vue'),
+  },
+
   {
     path: '/login',
     name: 'login',
