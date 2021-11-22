@@ -5,26 +5,7 @@ export const menuItems = [
         label: "menuitems.menu.text",
         isTitle: true
     },
-    {
-        id: 11,
-        label: "menuitems.filemanager.text",
-        link: "/",
-        icon: "bx-file" 
-    },
-    {
-        id: 2,
-        label: "menuitems.login.text",
-        isTitle: false,
-        icon:'mdi mdi-login',
-        link: "/Login",
-    },
-    {
-        id: 3,
-        label: "menuitems.createaccount.text",
-        isTitle: false,
-        icon:'mdi mdi-wallet',
-        link: "/CreateAccount",
-    },
+    
     {
         id: 3,
         label: "menuitems.locallogin.text",
@@ -32,13 +13,7 @@ export const menuItems = [
         icon:'mdi mdi-login',
         link: "/LocalLogin",
     },
-    {
-        id: 3,
-        label: "menuitems.loginwithfile.text",
-        isTitle: false,
-        icon:'mdi mdi-login',
-        link: "/LoginWithFile",
-    },
+   
     {
         id: 3,
         label: "menuitems.relink.text",

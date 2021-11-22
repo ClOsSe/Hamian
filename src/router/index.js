@@ -7,6 +7,8 @@ import Vuex from 'vuex';
 import store from '@/state/store'
 import routes from './routes'
 import BaseLocalService from '../localService/baseLocalService';
+import StorageService from '../localService/storageService';
+
 
 
 Vue.use(VueRouter)
@@ -73,24 +75,24 @@ router.beforeEach(async(to, from, next) => {
   if(!to.meta.isPublic)
   {
     
-    // var dt =await  StorageService.existData()
-    // if(!dt)
-    // {
-    //   store.state.loading = false;  
-    //   next({path:'/createaccount'})
-    //   return
-    // }
-    // else
-    // {
-    //   var islogin =await  StorageService.isLogin();
-    //   if(!islogin)
-    //   {
-    //     store.state.loading = false;  
-    //     next({path:'/login'})
-    //     return
+    var dt =await  StorageService.existData()
+    if(!dt)
+    {
+      store.state.loading = false;  
+      next({path:'/createaccount'})
+      return
+    }
+    else
+    {
+      var islogin =await  StorageService.isLogin();
+      if(!islogin)
+      {
+        store.state.loading = false;  
+        next({path:'/login'})
+        return
 
-    //   }
-    // }
+      }
+    }
   } 
   store.state.loading = false;
 

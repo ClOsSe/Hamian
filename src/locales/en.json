@@ -95,17 +95,8 @@
     "menu": {
       "text": "Menu"
     },
-    "login":{
-      "text":"Login"
-    },
-    "createaccount":{
-      "text":"Create Account"
-    },
     "locallogin":{
       "text":"Local Login"
-    },
-    "loginwithfile":{
-      "text":"Login With File"
     },
     "relink":{
       "text":"Re-link"

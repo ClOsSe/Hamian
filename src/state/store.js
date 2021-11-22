@@ -13,6 +13,8 @@ const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state:{
     loading:false,
+    blockchain:[],
+    currentTet:[],
   },
   // actions:{
   //   showLoading({commit}){

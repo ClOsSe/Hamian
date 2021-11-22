@@ -85,6 +85,11 @@ export default {
         toggleMenu(event) {
             event.currentTarget.nextElementSibling.classList.toggle("mm-show");
         },
+         showNetworkList(selectedNet)
+        {
+            this.$store.state.currentTet = selectedNet;
+            this.$router.push({name : 'walletNetwork' , params:{'chainId':selectedNet.chainId}})
+        }
     },
 };
 </script>
@@ -96,6 +101,24 @@ export default {
 <div id="sidebar-menu">
     <!-- Left Menu Start -->
     <ul id="side-menu" class="metismenu list-unstyled">
+        <template  v-if="$store.state.blockchain">
+            <li class="menu-title">
+                Blockchain
+            </li>
+            <li aria-expanded="false" >
+                <router-link to="/"  class="side-nav-link-a-ref has-arrow" href="javascript:void(0);">
+                    <i :class="`bx bx-file`" ></i>
+                    Blockchain
+                </router-link>
+                <ul  class="sub-menu mm-collapse" aria-expanded="false">
+                    <li v-for="(blocks, index) of $store.state.blockchain" :key="index">
+                        <router-link to="/" @click="showNetworkList(blocks)" class="side-nav-link-ref">{{ blocks.name }}</router-link>
+                    </li>
+                </ul>
+            </li>
+        </template>
+            
+
         <template v-for="item in menuItems">
             <li class="menu-title" v-if="item.isTitle" :key="item.id">
                 {{ $t(item.label) }}
