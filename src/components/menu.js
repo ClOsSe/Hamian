@@ -39,6 +39,13 @@ export const menuItems = [
         icon:'mdi mdi-login',
         link: "/LoginWithFile",
     },
+    {
+        id: 3,
+        label: "menuitems.relink.text",
+        isTitle: false,
+        icon:'mdi mdi-link',
+        link: "/ReLink",
+    },
     
     {
         id: 75,

@@ -107,6 +107,9 @@
     "loginwithfile":{
       "text":"Login With File"
     },
+    "relink":{
+      "text":"Re-link"
+    },
     "dashboards": {
       "text": "Dashboards",
       "badge": "04",

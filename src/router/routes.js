@@ -31,11 +31,11 @@ export default [
     component: () => import('./views/auth/LocalLogin.vue')
   },
   
-  // {
-  //   path: '/ReLink',
-  //   name: 'relink',
-  //   component: () => import('./views/auth/ReLink.vue')
-  // },
+  {
+    path: '/ReLink',
+    name: 'relink',
+    component: () => import('./views/auth/ReLink.vue')
+  },
   // {
   //   path: '/TransactionSign',
   //   name: 'TransactionSign',
