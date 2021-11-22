@@ -61,6 +61,16 @@
       <!-- end col -->
     </div>
     <!-- end row -->
+    <div class="col-12" v-if="showConfirm == true">
+        <Confirm  
+        v-model="showConfirm"
+        acceptColor="red"
+        rejectColor="white"
+        @accept="acceptAddToBlackList()" 
+        @reject="rejectAddToBlackList()" 
+        title="Warning" 
+        :description="`Are you sure you whant to add` + data.origin + `to blacklist`" />
+    </div>
   </Layout>
 </template>
 
@@ -76,6 +86,8 @@ import StorageAccountModel from "@/models/storage/accountModel";
 import Confirm from '@/components/common/Confirm.vue'
 import WalletService from "@/localService/walletService";
 // const remote = require('electron').remote;
+const remote = window.require('electron');
+// import {remote} from 'electron'
 
 @Component({
     components:{
@@ -85,14 +97,8 @@ import WalletService from "@/localService/walletService";
 })
 export default class LocalLogin extends Vue{
   data:LoginRequest=new LoginRequest();
-//   selectedAccount:StorageAccountModel=new StorageAccountModel();
-  selectedAccount:any={name:'test'}
-  account:StorageAccountModel[]=[
-      {name:'mohamamd'},
-      {name:'mohamamd1'},
-      {name:'mohamamd2'},
-      {name:'mohamamd3'},
-      ];
+  selectedAccount:StorageAccountModel=new StorageAccountModel();
+  account:StorageAccountModel[]=[];
   showConfirm:boolean=false;
   counter:number=0;
   async reciveLoginRequest(data:any)

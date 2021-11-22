@@ -6,6 +6,8 @@ import VueMeta from 'vue-meta'
 import Vuex from 'vuex';
 import store from '@/state/store'
 import routes from './routes'
+import BaseLocalService from '../localService/baseLocalService';
+
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -35,16 +37,64 @@ const router = new VueRouter({
 })
 
 // Before each route evaluates...
-router.beforeEach(async(routeTo, routeFrom, next) => {
+// router.beforeEach(async(routeTo, routeFrom, next) => {
 
-  store.state.loading = true;
-  // const publicPages = ['/login', '/register', '/forgot-password'];
-  // const authpage = !publicPages.includes(routeTo.path);
-  // console.log('------------>',authpage,routeTo);
+//   store.state.loading = true;
+//   // const publicPages = ['/login', '/register', '/forgot-password'];
+//   // const authpage = !publicPages.includes(routeTo.path);
+//   // console.log('------------>',authpage,routeTo);
    
-  // store.state.loading = false;
+//   // store.state.loading = false;
+//   store.state.loading = false;
+//   next(); 
+// })
+router.beforeEach(async(to, from, next) => {  
+  if(!BaseLocalService.globalId) 
+  {
+    store.state.loading = true;
+
+    var id=window.sessionStorage.getItem('globalid')
+    const urlParams = new URLSearchParams(window.location.search); 
+    if(!id)
+    {
+      id=urlParams.get('globalid');
+      if(!id)
+      {
+        id='main'
+      }
+    } 
+
+    BaseLocalService.globalId=id ;
+    window.sessionStorage.setItem('globalid',BaseLocalService.globalId)
+
+  }
+
+
+  if(!to.meta.isPublic)
+  {
+    
+    // var dt =await  StorageService.existData()
+    // if(!dt)
+    // {
+    //   store.state.loading = false;  
+    //   next({path:'/createaccount'})
+    //   return
+    // }
+    // else
+    // {
+    //   var islogin =await  StorageService.isLogin();
+    //   if(!islogin)
+    //   {
+    //     store.state.loading = false;  
+    //     next({path:'/login'})
+    //     return
+
+    //   }
+    // }
+  } 
   store.state.loading = false;
-  next(); 
+
+  next()
 })
 
 router.beforeResolve(async (routeTo, routeFrom, next) => {
