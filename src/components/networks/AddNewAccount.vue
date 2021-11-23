@@ -36,12 +36,15 @@
 
             <template dir="rtl" #modal-footer>
                 <div dir="rtl" class="w-100 float-right">
-                    <b-button class="pr-3 m-1 pl-3" v-if="!findAccounts.length"
+                    <b-button class="pr-3 m-1 pl-3" v-if="!findAccounts.length && !loading"
                         variant="primary"
                         size="sm"
                         @click="checkNetwork">
                         Search
                     </b-button>
+                    
+                    <Spinner v-if="!findAccounts.length && loading" />
+                    
                     <b-button class="pr-3 m-1 pl-3" v-if="findAccounts.length"
                         variant="success"
                         size="sm"
@@ -65,12 +68,14 @@ import StorageAccountModel from '@/models/storage/accountModel';
 import NetworkModel from '@/models/networkModel';
 import WalletService from '@/localService/walletService'
 import AccountService from '@/services/accountService';
+import Spinner from "@/components/spinner/Spinner.vue"
 
-@Component({components:{}})
+@Component({components:{Spinner}})
 
 export default class AddNewAccount extends Vue{
     @Prop({default:()=>{false}}) value:boolean;
     submitted:boolean=false;
+    loading:boolean=false;
     selectedNet:NetworkModel;
     account:StorageAccountModel=new StorageAccountModel();
     findAccounts:StorageAccountModel[]=[];
@@ -103,21 +108,28 @@ export default class AddNewAccount extends Vue{
     async checkNetwork()
     {
         this.submitted = true;
+        this.loading = true;
         if(this.account.privateKey){
-            var newAccount =await WalletService.existData(this.selectedNet.type,this.account.privateKey,this.selectedNet.history)
-            console.log('>>>>>>>>>>>>>>>',newAccount)
-            if(newAccount.account_names)
-            {
-                for(var a of newAccount.account_names)
+            try{
+                var newAccount =await WalletService.existData(this.selectedNet.type,this.account.privateKey,this.selectedNet.history)
+                console.log('>>>>>>>>>>>>>>>',newAccount)
+                if(newAccount.account_names)
                 {
-                    var acc=await AccountService.getAccount(a,this.selectedNet.history);
-                    var x=new StorageAccountModel();
-                    x.name=a;
-                    x.authority=acc.permissions.filter(p=>p.key==newAccount.publicKey)[0].authority
-                    this.findAccounts.push(x)// =;
+                    for(var a of newAccount.account_names)
+                    {
+                        var acc=await AccountService.getAccount(a,this.selectedNet.history);
+                        var x=new StorageAccountModel();
+                        x.name=a;
+                        x.authority=acc.permissions.filter(p=>p.key==newAccount.publicKey)[0].authority
+                        this.findAccounts.push(x)// =;
+                    }
+                    this.loading = false;
                 }
+            }catch{
+                this.loading = false;
             }
             console.log(newAccount)
+            this.loading = false;
         }
     }
     async save()
