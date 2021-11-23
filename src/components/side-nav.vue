@@ -87,6 +87,7 @@ export default {
         },
          showNetworkList(selectedNet)
         {
+            console.log(selectedNet)
             this.$store.state.currentTet = selectedNet;
             this.$router.push({name : 'walletNetwork' , params:{'chainId':selectedNet.chainId}})
         }
@@ -112,7 +113,7 @@ export default {
                 </router-link>
                 <ul  class="sub-menu mm-collapse" aria-expanded="false">
                     <li v-for="(blocks, index) of $store.state.blockchain" :key="index">
-                        <router-link to="/" @click="showNetworkList(blocks)" class="side-nav-link-ref">{{ blocks.name }}</router-link>
+                        <router-link to="/" @click.native="showNetworkList(blocks)" class="side-nav-link-ref">{{ blocks.name }}</router-link>
                     </li>
                 </ul>
             </li>
