@@ -1,16 +1,52 @@
 <template>
     <div>
         <b-modal title="Add Account" centered v-model="value">
-            ok
-            
+            <p v-if="!findAccounts.length">Enter your private key to add your account!</p>
+            <b-form class="p-2" @submit.prevent="checkNetwork">
+              <b-form-group v-if="!findAccounts.length"
+                class="mb-3"
+                id="input-group-2"
+                label="Private key"
+                label-for="input-2"
+              >
+                <b-form-input
+                  id="input-2"
+                  v-model="account.privateKey"
+                  type="text"
+                  placeholder="Enter your private key"
+                  :class="{ 'is-invalid': submitted && !account.privateKey }"
+                ></b-form-input>
+                <div
+                  v-if="submitted && !account.privateKey"
+                  class="invalid-feedback"
+                >
+                  Private Key is required.
+                </div>
+              </b-form-group>
+              <div class="row left" v-if="findAccounts.length" align="left">
+                <p class="card-sub-title">Select wich account you whant to add!</p>
+
+                <div class="col-12" v-for="(acc,nameIndex) in findAccounts" align="center" :key="'name'+nameIndex">
+                    <b-form-radio @click.native="setSelectedacc(acc)"  name="some-radios" > {{acc.name}}({{acc.authority}}) </b-form-radio>
+                </div> 
+            </div>
+              
+            </b-form>
+
+
             <template dir="rtl" #modal-footer>
                 <div dir="rtl" class="w-100 float-right">
-                    <b-button
-                    class="pr-3 m-1 pl-3"
+                    <b-button class="pr-3 m-1 pl-3" v-if="!findAccounts.length"
+                        variant="primary"
+                        size="sm"
+                        @click="checkNetwork">
+                        Search
+                    </b-button>
+                    <b-button class="pr-3 m-1 pl-3" v-if="findAccounts.length"
                         variant="success"
                         size="sm"
-                        @click="Add()">
-                        Add
+                        @click="save()">
+                        Add Account
                     </b-button>
                     <b-button
                         variant="outline-secondary"
@@ -34,60 +70,66 @@ import AccountService from '@/services/accountService';
 
 export default class AddNewAccount extends Vue{
     @Prop({default:()=>{false}}) value:boolean;
-    privateKey:string='';
+    submitted:boolean=false;
     selectedNet:NetworkModel;
     account:StorageAccountModel=new StorageAccountModel();
     findAccounts:StorageAccountModel[]=[];
     selectName:StorageAccountModel=new StorageAccountModel();
-    
+    setSelectedacc(acc:any){
+        this.selectName = acc;
+    }
     @Watch('value')
     valueChanged(newVal:any){
         newVal == false?
         this.closeModal() : '';
     }
     closeModal(){
+        this.account.privateKey = '';
+        this.findAccounts = [];
         this.$emit('close')
     }
   
-//     mounted(){
-//         // console.log('AddNewAccountModel:',this.$store.getters.getBlockChains.currentTet)
-//         // this.addNetwork(this.$store.state.currentTet);
-//     }
-//     close(){
-//         this.$emit('close')
-//     }
-//     addNetwork(model:NetworkModel)
-//     {
-//         console.log('fire')
-//         // this.selectedNet=this.$store.getters.getBlockChains.currentTet;
-//         this.account=new StorageAccountModel();
-//         this.account.chainId=model.chainId;
-//         this.account.blockchain=model.type;  
-//     }
-//     async checkNetwork()
-//     {
-//         var newAccount =await WalletService.existData(this.selectedNet.type,this.account.privateKey,this.selectedNet.history)
-//         console.log('>>>>>>>>>>>>>>>',newAccount)
-//         if(newAccount.account_names)
-//         {
-//             for(var a of newAccount.account_names)
-//             {
-//                 var acc=await AccountService.getAccount(a,this.selectedNet.history);
-//                 var x=new StorageAccountModel();
-//                 x.name=a;
-//                 x.authority=acc.permissions.filter(p=>p.key==newAccount.publicKey)[0].authority
-//                 this.findAccounts.push(x)// =;
-//             }
-//         }
-//         console.log(newAccount)
-//     }
-//     async save()
-//   {
-//       this.account.name=this.selectName.name;
-//       this.account.authority=this.selectName.authority; 
-//       console.log('dddddddd',this.account)
-//       var dt =await WalletService.addAccount(this.account);
-//       this.close()
-//   }
+    mounted(){
+        this.addNetwork(this.$store.state.currentTet);
+    }
+    
+    addNetwork(model:NetworkModel)
+    {
+        this.selectedNet=this.$store.state.currentTet;
+        this.account=new StorageAccountModel();
+        this.account.chainId=model.chainId;
+        this.account.blockchain=model.type;  
+    }
+    async checkNetwork()
+    {
+        this.submitted = true;
+        if(this.account.privateKey){
+            var newAccount =await WalletService.existData(this.selectedNet.type,this.account.privateKey,this.selectedNet.history)
+            console.log('>>>>>>>>>>>>>>>',newAccount)
+            if(newAccount.account_names)
+            {
+                for(var a of newAccount.account_names)
+                {
+                    var acc=await AccountService.getAccount(a,this.selectedNet.history);
+                    var x=new StorageAccountModel();
+                    x.name=a;
+                    x.authority=acc.permissions.filter(p=>p.key==newAccount.publicKey)[0].authority
+                    this.findAccounts.push(x)// =;
+                }
+            }
+            console.log(newAccount)
+        }
+    }
+    async save()
+    {
+        this.account.name=this.selectName.name;
+        this.account.authority=this.selectName.authority; 
+        console.log(this.account)
+        console.log('dddddddd',this.account)
+        var dt =await WalletService.addAccount(this.account);
+        if(dt){
+            this.closeModal()
+        }
+    }
 }
 </script>
