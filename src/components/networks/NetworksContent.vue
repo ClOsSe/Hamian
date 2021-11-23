@@ -7,6 +7,15 @@
             </div>
             <div v-if="value == 'resources'">
                 <Resources v-model="data.resources" />
+                <ResourceInformation v-model="data.resource" />
+            </div>
+            <div v-if="value == 'buySellRAM'  ">
+                <Resources v-model="data.resources" />
+                <!-- <BuySellRAM /> -->
+            </div>
+            <div v-if="value == 'stakeCpuNet'">
+                <Resources v-model="data.resources" />
+                <!-- <StakeCpuNet /> -->
             </div>
             <div v-if="value == 'tokens'">
                 <Tokens v-model="data.tokens" />
@@ -23,6 +32,7 @@ import AccountService from '@/services/accountService';
 import WalletService from '@/localService/walletService';
 import AccountList from '@/components/networks/AccountList.vue'
 import Resources from '@/components/networks/Resources.vue'
+import ResourceInformation from '@/components/networks/ResourceInformation.vue'
 import Tokens from '@/components/networks/Tokens.vue'
 import TransferToken from '@/components/networks/TransferToken.vue'
 
@@ -31,6 +41,7 @@ import TransferToken from '@/components/networks/TransferToken.vue'
     components:{
         AccountList,
         Resources,
+        ResourceInformation,
         Tokens,
         TransferToken,
     }

@@ -3,9 +3,7 @@
         <div class="mb-3 d-grid account">
             <b-dropdown 
                 toggle-class="btn-block w-100 "
-                variant="light"
-                
-            >
+                variant="light">
                 <template #button-content>
                 Account <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
                 </template> 
@@ -28,16 +26,10 @@
             </b-dropdown>
         </div>
 
-
-
-
-
-        <div class="mb-3 d-grid account" @click="selectedItem('resources')"  >
-            <b-dropdown 
+        <div class="mb-3 d-grid account"   >
+            <b-dropdown @show="selectedItem('resources')"
                 toggle-class="btn-block w-100 "
-                variant="light"
-                
-            >
+                variant="light" >
                 <template #button-content>
                 Resources <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
                 </template> 
@@ -110,6 +102,7 @@ export default class NetworkMenu extends Vue{
     this.nets = await CommonService.getNetworks();
     }
     selectedItem(data:string){
+        console.log(data)
     this.$emit('selectedItem',data)
     }
     addNewAccount(){
