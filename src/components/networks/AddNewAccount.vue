@@ -124,10 +124,8 @@ export default class AddNewAccount extends Vue{
     {
         this.account.name=this.selectName.name;
         this.account.authority=this.selectName.authority; 
-        console.log(this.account)
-        console.log('dddddddd',this.account)
-        var dt =await WalletService.addAccount(this.account);
-        if(dt){
+        var data =await WalletService.addAccount(this.account);
+        if(data){
             this.closeModal()
         }
     }
