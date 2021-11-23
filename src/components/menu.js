@@ -15,7 +15,7 @@ export const menuItems = [
     },
    
     {
-        id: 3,
+        id: 34,
         label: "menuitems.relink.text",
         isTitle: false,
         icon:'mdi mdi-link',
@@ -42,7 +42,7 @@ export const menuItems = [
         ]
     },
     {
-        id: 70,
+        id: 71,
         label: "Help",
         icon: "bx-help-circle",
         subItems: [
@@ -50,7 +50,7 @@ export const menuItems = [
                 id: 74,
                 label: "menuitems.utility.list.faqs",
                 link: "/pages/faqs",
-                parentId: 70
+                parentId: 71
             },
             {
                 id: 74,
