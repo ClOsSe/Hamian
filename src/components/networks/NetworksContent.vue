@@ -1,23 +1,44 @@
 <template>
     <div class="col-12  account-list-body" >
         <p style="display:none">{{counter}}</p>
-        {{value}}
+        <div class="col-12">
+            <div v-if="value == 'accountList'">
+                <AccountList v-model="data.accountList" />
+            </div>
+            <div v-if="value == 'resources'">
+                <Resources v-model="data.resources" />
+            </div>
+            <div v-if="value == 'tokens'">
+                <Tokens v-model="data.tokens" />
+            </div>
+            <div v-if="value == 'transferToken'">
+                <TransferToken v-model="data.transferToken" />
+            </div>
+        </div>
     </div>
 </template>
 <script lang="ts">
 import {Vue , Component ,Prop,Watch} from 'vue-property-decorator';
 import AccountService from '@/services/accountService';
 import WalletService from '@/localService/walletService';
+import AccountList from '@/components/networks/AccountList.vue'
+import Resources from '@/components/networks/Resources.vue'
+import Tokens from '@/components/networks/Tokens.vue'
+import TransferToken from '@/components/networks/TransferToken.vue'
 
 
 @Component({
-    components:{}
+    components:{
+        AccountList,
+        Resources,
+        Tokens,
+        TransferToken,
+    }
 })
 export default class NetworksContent extends Vue{
     @Prop({default:() =>{return []}}) value:any;
     counter:number=0;
     showCustomToken:boolean=false;
-    tokenTab:string='token'
     buyWith:string='TELOS'
     selectedNFTs:any=[];
     stakeCPUorNET:any={

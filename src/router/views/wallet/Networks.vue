@@ -30,6 +30,11 @@ export default class Networks extends Vue{
   selectedItemChanged(data:any){
     this.accuntList = data;
   }
+  mounted(){
+      if(!this.$store.state.currentTet.name){
+          this.$router.push('/')
+      }
+  }
 }
 </script>
 <style scoped>
