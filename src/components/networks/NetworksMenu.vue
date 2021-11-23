@@ -9,14 +9,22 @@
                 <template #button-content>
                 <i class="mdi mdi-plus me-1"></i> Account
                 </template> 
-                <b-dropdown-item @click="addNewAccount()" 
-                v-b-modal.modal-standard >
+                <b-dropdown-item @click="addNewAccount()" >
+                    <b-button 
+                        toggle-class="btn-block w-100 "
+                        variant="light">
                     <i class="mdi mdi-account-plus me-1"></i>
                      Add Account
+                    </b-button>
                 </b-dropdown-item
                 >
                 <b-dropdown-item  @click="selectedItem('accountList')"  >
-                <i class="mdi mdi-view-list-outline me-1"></i> Account List</b-dropdown-item >
+                    <b-button 
+                        toggle-class="btn-block w-100 "
+                        variant="light">
+                        <i class="mdi mdi-view-list-outline me-1"></i> Account List
+                    </b-button>
+                </b-dropdown-item >
             </b-dropdown>
         </div>
         <div class="mb-3 d-grid account" @click="selectedItem('buySellRAM')"  >
@@ -47,6 +55,9 @@
                 Transfer Token
             </b-button>
         </div>
+        <div>
+            <AddNewAccount @close="showAddNewAccountPopUp = false" v-model="showAddNewAccountPopUp" />
+        </div>
     </div>
 </template>
 
@@ -54,11 +65,11 @@
 import {Vue , Component , Prop} from 'vue-property-decorator'
 import CommonService from '@/services/commonService'
 
-// import AddNewAccount from 'src/components/wallet/networks/add_new_account/AddNewAccount.vue'
+import AddNewAccount from '@/components/networks/AddNewAccount.vue'
 
 @Component({
     components:{
-        // AddNewAccount,
+        AddNewAccount,
     }
 })
 export default class NetworkMenu extends Vue{
