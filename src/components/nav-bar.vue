@@ -5,6 +5,8 @@ import simplebar from "simplebar-vue";
 import i18n from "../i18n";
 import Config from '../common/config';
 import EventBus from '../localService/eventBus'
+import WalletService from '@/localService/walletService';
+
 /**
  * Nav-bar Component
  */
@@ -43,11 +45,15 @@ export default {
       flag: null,
       value: null,
       username:'',
-      imageUrl:'@/assets/images/users/1.jpg'
+      imageUrl:'@/assets/images/users/1.jpg',
+      accountList:[],
     };
   },
   components: { simplebar },
+    
   mounted() {
+    this.getAccounts();
+
     this.username=Config.username;
     this.value = this.languages.find((x) => x.language === i18n.locale);
     this.text = this.value.title;
@@ -58,6 +64,9 @@ export default {
     },'account',this);
   },
   methods: {
+    async getAccounts(){
+      this.accountList = await WalletService.getAccounts();
+    },
     toggleMenu() {
       this.$parent.toggleMenu();
     },
@@ -658,10 +667,17 @@ export default {
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
           </template>
           <!-- item-->
-          <!-- <b-dropdown-item>
-            <router-link tag="span" to="/contacts/profile">
+          <!-- <div v-for="(account , index) in accountList" :key="index">
+              <span v-if="account.name" class="d-none d-xl-inline-block ms-1">
+                {{account.name}}
+              </span>
+              <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+            </div> -->
+           <b-dropdown-item v-for="(account , index) in accountList" :key="index">
+            <router-link v-if="account.name" tag="span" to="/">
               <i class="bx bx-user font-size-16 align-middle me-1"></i>
-              {{ $t("navbar.dropdown.henry.list.profile") }}
+              <!-- {{ $t("navbar.dropdown.henry.list.profile") }} -->
+              {{account.name}}
             </router-link>
           </b-dropdown-item>
           <b-dropdown-item href="javascript: void(0);">
@@ -676,8 +692,8 @@ export default {
           <b-dropdown-item href="javascript: void(0);">
             <i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
             {{ $t("navbar.dropdown.henry.list.lockscreen") }}
-          </b-dropdown-item> -->
-          <!-- <b-dropdown-divider></b-dropdown-divider> -->
+          </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
           <a @click="logoutUser" class="dropdown-item text-danger">
             <i
               class="bx bx-power-off font-size-16 align-middle me-1 text-danger"
