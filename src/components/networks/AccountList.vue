@@ -1,8 +1,8 @@
 <template>
     <div class="col-12">
-        <div class="col-12 box" v-for="(account , index) in accountList" :key="index">
+        <div class="col-12 box" v-for="(account , index) in value" :key="index">
             <div class="acc-box" v-if="account.name">
-                <i class="mdi mdi-account"></i> {{account.name}}({{account.authority}})
+                <i class="bx bx-user font-size-16 align-middle me-1"></i>  {{account.name}}({{account.authority}})
             </div>
         </div>
     </div>
@@ -14,10 +14,7 @@ import {Vue, Component , Prop , Watch} from 'vue-property-decorator'
 })
 export default class AccountList extends Vue{
     @Prop({default:() =>{return []}}) value:any;
-    accountList:any=[];
-    mounted(){
-        this.accountList = this.value;
-    }
+    
 
 }
 </script>

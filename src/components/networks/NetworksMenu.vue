@@ -42,19 +42,21 @@
                 Resources <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
                 </template> 
                 <b-dropdown-item @click="selectedItem('buySellRAM')" >
-                    <b-button 
+                    <b-button
+                    style="position:relative;width:110%" 
                         toggle-class="btn-block w-100 "
                         variant="light">
-                    <i style="font-size:20px;" class="mdi mdi-memory me-1"></i>
+                    <i style="font-size:16px;margin-top:-2px;margin-left:-19px;position:absolute" class="mdi mdi-chip me-1"></i>
                      Buy/Sell RAM
                     </b-button>
                 </b-dropdown-item
                 >
                 <b-dropdown-item  @click="selectedItem('stakeCpuNet')" >
                     <b-button 
+                    style="position:relative;width:110%"
                         toggle-class="btn-block w-100 "
                         variant="light">
-                        <i style="font-size:20px;" class="mdi mdi-cpu-64-bit me-1"></i>
+                        <i style="font-size:16px;margin-top:-2px;margin-left:-19px;position:absolute" class="mdi mdi-cpu-64-bit me-1"></i>
                          Stake CPU/NET
                     </b-button>
                 </b-dropdown-item >
