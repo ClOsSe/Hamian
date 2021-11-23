@@ -680,7 +680,7 @@ export default {
               {{account.name}}
             </router-link>
           </b-dropdown-item>
-          <b-dropdown-item href="javascript: void(0);">
+          <!-- <b-dropdown-item href="javascript: void(0);">
             <i class="bx bx-wallet font-size-16 align-middle me-1"></i>
             {{ $t("navbar.dropdown.henry.list.mywallet") }}
           </b-dropdown-item>
@@ -692,7 +692,7 @@ export default {
           <b-dropdown-item href="javascript: void(0);">
             <i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
             {{ $t("navbar.dropdown.henry.list.lockscreen") }}
-          </b-dropdown-item>
+          </b-dropdown-item> -->
           <b-dropdown-divider></b-dropdown-divider>
           <a @click="logoutUser" class="dropdown-item text-danger">
             <i
