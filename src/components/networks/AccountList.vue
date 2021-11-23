@@ -31,8 +31,6 @@ export default class AccountList extends Vue{
         background: #ffffff;
         padding: 10px ;
         margin: 15px;
-
     }
-
 }
 </style>
