@@ -7,7 +7,7 @@
                 
             >
                 <template #button-content>
-                <i class="mdi mdi-plus me-1"></i> Account
+                Account <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
                 </template> 
                 <b-dropdown-item @click="addNewAccount()" >
                     <b-button 
@@ -27,20 +27,40 @@
                 </b-dropdown-item >
             </b-dropdown>
         </div>
-        <div class="mb-3 d-grid account" @click="selectedItem('buySellRAM')"  >
-            <b-button 
+
+
+
+
+
+        <div class="mb-3 d-grid account" @click="selectedItem('resources')"  >
+            <b-dropdown 
                 toggle-class="btn-block w-100 "
-                variant="light">
-                Buy / Sell RAM
-            </b-button>
+                variant="light"
+                
+            >
+                <template #button-content>
+                Resources <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
+                </template> 
+                <b-dropdown-item @click="selectedItem('buySellRAM')" >
+                    <b-button 
+                        toggle-class="btn-block w-100 "
+                        variant="light">
+                    <i style="font-size:20px;" class="mdi mdi-memory me-1"></i>
+                     Buy/Sell RAM
+                    </b-button>
+                </b-dropdown-item
+                >
+                <b-dropdown-item  @click="selectedItem('stakeCpuNet')" >
+                    <b-button 
+                        toggle-class="btn-block w-100 "
+                        variant="light">
+                        <i style="font-size:20px;" class="mdi mdi-cpu-64-bit me-1"></i>
+                         Stake CPU/NET
+                    </b-button>
+                </b-dropdown-item >
+            </b-dropdown>
         </div>
-        <div class="mb-3 d-grid account" @click="selectedItem('stakeCpuNet')"  >
-            <b-button 
-                toggle-class="btn-block w-100 "
-                variant="light">
-                Stake CPU/NET
-            </b-button>
-        </div>
+
         <div class="mb-3 d-grid account" @click="selectedItem('tokens')"  >
             <b-button 
                 toggle-class="btn-block w-100 "
