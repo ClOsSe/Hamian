@@ -35,6 +35,8 @@ import Resources from '@/components/networks/Resources.vue'
 import ResourceInformation from '@/components/networks/ResourceInformation.vue'
 import Tokens from '@/components/networks/Tokens.vue'
 import TransferToken from '@/components/networks/TransferToken.vue'
+import StorageService from '@/localService/storageService'
+
 
 
 @Component({
@@ -117,6 +119,7 @@ export default class NetworksContent extends Vue{
         }
         else if(newValue == 'resources'){
         this.getResources();
+        this.counter++
         }
         else if(newValue == 'buySellRAM'){
         this.getResources();
@@ -140,8 +143,26 @@ export default class NetworksContent extends Vue{
     this.selectedNFTs = nft.title;
   }
   async getResources(){
-    this.data.resources = await AccountService.getAccount(this.$route.params.chainId)
-    this.counter++;
+    var currentNet = this.$store.state.currentNet;
+    if(currentNet){
+
+        var selectedNet = await StorageService.getSelectedNode(currentNet.chainId)
+        console.log('selectedNet',selectedNet)
+        if(selectedNet){
+     
+        }
+    }
+    else{
+        console.log('currentNet not selected')
+        this.$router.push('/')
+    }
+    // var account = await StorageService.getSelectedAccount(this.$route.params.chainId)
+    // if(account){
+    //     console.log('account',account)
+    // }
+
+    // this.data.resources = await AccountService.getAccount(this.$store.state.selectedAccount.name)
+    // this.counter++;
   }
   async getAccounts(){
     this.data.accountList = await WalletService.getAccounts();
