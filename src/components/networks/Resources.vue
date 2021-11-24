@@ -192,7 +192,7 @@ export default class AccountList extends Vue{
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .box{
   background: #ffffff;
   margin:5px;

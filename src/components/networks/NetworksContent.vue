@@ -11,11 +11,11 @@
             </div>
             <div v-if="value == 'buySellRAM'  ">
                 <Resources v-model="data.resources" />
-                <!-- <BuySellRAM /> -->
+                <BuySellRAM v-model="data.resource" />
             </div>
             <div v-if="value == 'stakeCpuNet'">
                 <Resources v-model="data.resources" />
-                <!-- <StakeCpuNet /> -->
+                <StakeCpuNet v-model="data.resource" />
             </div>
             <div v-if="value == 'tokens'">
                 <Tokens v-model="data.tokens" />
@@ -36,6 +36,8 @@ import ResourceInformation from '@/components/networks/ResourceInformation.vue'
 import Tokens from '@/components/networks/Tokens.vue'
 import TransferToken from '@/components/networks/TransferToken.vue'
 import StorageService from '@/localService/storageService'
+import BuySellRAM from '@/components/networks/BuySellRAM.vue'
+import StakeCpuNet from '@/components/networks/StakeCPUNet.vue'
 
 
 
@@ -46,6 +48,8 @@ import StorageService from '@/localService/storageService'
         ResourceInformation,
         Tokens,
         TransferToken,
+        BuySellRAM,
+        StakeCpuNet
     }
 })
 export default class NetworksContent extends Vue{

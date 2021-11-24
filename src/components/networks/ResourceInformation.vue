@@ -73,7 +73,7 @@ export default class AccountList extends Vue{
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .box{
   background: #ffffff;
   width: 98%;
