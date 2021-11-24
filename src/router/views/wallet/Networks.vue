@@ -2,7 +2,7 @@
     <Layout>
         <div class="col-12 background-network row" >
             <div class="col-3 py-3" style="padding:0px 5px 0px 5px">
-                <NetworksMenu 
+                <NetworksMenu v-if="$route.params.chainId"
                 :chainId="$route.params.chainId" 
                 @selectedItem="selectedItemChanged" />
             </div>   
@@ -31,7 +31,7 @@ export default class Networks extends Vue{
     this.accuntList = data;
   }
   mounted(){
-      if(!this.$store.state.currentTet.name){
+      if(!this.$store.state.currentNet.name){
           this.$router.push('/')
       }
   }
