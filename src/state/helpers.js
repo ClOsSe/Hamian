@@ -24,7 +24,7 @@ export const loading = {
 export const blockchain = {
   ...mapState('blockchain', {
     blockchain: (state) => state.blockchain,
-    currentTet: (state) => state.currentTet,
+    currentNet: (state) => state.currentNet,
   })
 }
 

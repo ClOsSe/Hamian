@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   state:{
     loading:false,
     blockchain:[],
-    currentTet:[],
+    currentNet:[],
   },
   // actions:{
   //   showLoading({commit}){
