@@ -1,5 +1,7 @@
 <script>
 import MetisMenu from "metismenujs/dist/metismenujs";
+import StorageService from '@/localService/storageService'
+
 
 import {
     menuItems
@@ -85,11 +87,13 @@ export default {
         toggleMenu(event) {
             event.currentTarget.nextElementSibling.classList.toggle("mm-show");
         },
-         showNetworkList(selectedNet)
+         async showNetworkList(selectedNet)
         {
-            console.log(selectedNet)
-            this.$store.state.currentTet = selectedNet;
-            this.$router.push({name : 'walletNetwork' , params:{'chainId':selectedNet.chainId}})
+            // var selectedNode = await StorageService.saveSelectedNode(selectedNet)
+            // if(selectedNode.message == true){
+                this.$store.state.currentNet = selectedNet;
+                this.$router.push({name : 'walletNetwork' , params:{'chainId':selectedNet.chainId}})
+            // }
         }
     },
 };
