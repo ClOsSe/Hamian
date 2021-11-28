@@ -1,10 +1,13 @@
 <template>
     <div class="col-12">
-        <div class="col-12 box" v-for="(account , index) in value" :key="index">
+        <div class="col-12 box" v-for="(account , index) in value"  :key="index">
             <div class="acc-box" v-if="account.name">
-                <b-form-radio @click.native="setSelectedacc(account)"  name="some-radios" >
-                <i class="bx bx-user font-size-16 align-middle me-1"></i>  {{account.name}}({{account.authority}})
-                </b-form-radio>
+                <b-form-group label="Account List" v-for="(account , index) in value"  :key="index">
+                    <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios"
+                     :value="account">
+                        <i class="bx bx-user font-size-16 align-middle me-1"></i>  {{account.name}}({{account.authority}})
+                     </b-form-radio>
+                </b-form-group>
             </div>
         </div>
     </div>
@@ -17,7 +20,13 @@ import StorageService from '@/localService/storageService'
 })
 export default class AccountList extends Vue{
     @Prop({default:() =>{return []}}) value:any;
+    selected:any=[]
+    @Watch('selected')
+    selectedChanged(newVal:any){
+        this.setSelectedacc(newVal)
+    }
     async setSelectedacc(account:any){
+        this.selected = account;
         account.chainId=this.$store.state.currentNet.chainId;
         let chain = StorageService.getSelectedNode(account.chainId)
         if(chain){
