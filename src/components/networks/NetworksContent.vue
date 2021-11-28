@@ -149,24 +149,23 @@ export default class NetworksContent extends Vue{
   async getResources(){
     var currentNet = this.$store.state.currentNet;
     if(currentNet){
+            var account = await StorageService.getSelectedAccount(currentNet.chainId)
+            account = account.message
+            if(account){
+                let acc = await AccountService.getAccount(account);
+                if(acc){
 
-        var selectedNet = await StorageService.getSelectedNode(currentNet.chainId)
-        console.log('selectedNet',selectedNet)
-        if(selectedNet){
-     
-        }
+                    this.data.resources = acc;
+                    console.log('this.data.resources',this.data.resources)
+                    this.counter++;
+                }
+            }
     }
     else{
         console.log('currentNet not selected')
         this.$router.push('/')
     }
-    // var account = await StorageService.getSelectedAccount(this.$route.params.chainId)
-    // if(account){
-    //     console.log('account',account)
-    // }
-
-    // this.data.resources = await AccountService.getAccount(this.$store.state.selectedAccount.name)
-    // this.counter++;
+    
   }
   async getAccounts(){
     this.data.accountList = await WalletService.getAccounts();
