@@ -7,15 +7,15 @@
             </div>
             <div v-if="value == 'resources'">
                 <Resources v-model="data.resources" />
-                <ResourceInformation v-model="data.resource" />
+                <ResourceInformation v-model="data.resources" />
             </div>
             <div v-if="value == 'buySellRAM'  ">
                 <Resources v-model="data.resources" />
-                <BuySellRAM v-model="data.resource" />
+                <BuySellRAM v-model="data.resources" />
             </div>
             <div v-if="value == 'stakeCpuNet'">
                 <Resources v-model="data.resources" />
-                <StakeCpuNet v-model="data.resource" />
+                <StakeCpuNet v-model="data.resources" />
             </div>
             <div v-if="value == 'tokens'">
                 <Tokens v-model="data.tokens" />

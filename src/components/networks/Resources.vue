@@ -56,12 +56,8 @@ export default class AccountList extends Vue{
     RAMSeries:any= [0];
     CPUSeries:any= [0];
     NETSeries:any= [0];
-    mounted(){
-      console.log('this is value ',this.value)
-    }
     @Watch('value')
     valChanged(newVal:any){
-      console.log('newVal',newVal);
       this.resources = newVal;
       this.calculate();
     }
