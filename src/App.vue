@@ -70,6 +70,7 @@ export default {
 
 <template>
   <div id="app">
+    <notifications group="foo" />
     <div v-if="$store.state.loading == true">
       <loader  />
     </div>

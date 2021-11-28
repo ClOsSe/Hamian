@@ -9,6 +9,7 @@ import vco from "v-click-outside"
 import router from './router/index'
 import Scrollspy from 'vue2-scrollspy';
 import VueSweetalert2 from 'vue-sweetalert2';
+import Notifications from 'vue-notification'
 
 import "../src/design/app.scss";
 
@@ -41,13 +42,14 @@ if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
 }
 
 Vue.component('tinymce', tinymce)
+Vue.use(Notifications)
+
 Vue.use(VueRouter)
 Vue.use(vco)
 Vue.use(Scrollspy);
 const VueScrollTo = require('vue-scrollto')
 Vue.use(VueScrollTo)
 Vue.config.productionTip = false
-
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
 Vue.use(VueMask)
