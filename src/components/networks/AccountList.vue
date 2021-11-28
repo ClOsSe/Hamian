@@ -19,12 +19,13 @@ export default class AccountList extends Vue{
     @Prop({default:() =>{return []}}) value:any;
     async setSelectedacc(account:any){
         account.chainId=this.$store.state.currentNet.chainId;
-        console.log(account)
-
-       var data =  await StorageService.saveSelectedAccount(account);
-       if(data.message == true){
-           console.log('account selected')
-       }
+        let chain = StorageService.getSelectedNode(account.chainId)
+        if(chain){
+            var data =  await StorageService.saveSelectedAccount(account);
+            if(data.message == true){
+                console.log('account selected')
+            }
+        }
     }
 
 }

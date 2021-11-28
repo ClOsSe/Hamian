@@ -89,11 +89,12 @@ export default {
         },
          async showNetworkList(selectedNet)
         {
-            // var selectedNode = await StorageService.saveSelectedNode(selectedNet)
-            // if(selectedNode.message == true){
+            var selectedNode = await StorageService.saveSelectedNode(selectedNet);
+            console.log('selectedNode',selectedNode)
+            if(selectedNode.message == true){
                 this.$store.state.currentNet = selectedNet;
                 this.$router.push({name : 'walletNetwork' , params:{'chainId':selectedNet.chainId}})
-            // }
+            }
         }
     },
 };

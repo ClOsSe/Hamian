@@ -27,18 +27,18 @@ export default class StorageService
     }
     static saveSelectedAccount(account:any)
     {
-        return BaseLocalService.run(this.storageName,{action:'saveSelectedAccount',data:{account}})
+        return BaseLocalService.run(this.storageName,{action:'saveSelectedAccount',data:account})
     }
     static getSelectedAccount(chainId:any)
     {
-        return BaseLocalService.run(this.storageName,{action:'getSelectedAccount',data:{chainId}})
+        return BaseLocalService.run(this.storageName,{action:'getSelectedAccount',data:chainId})
     }
     static saveSelectedNode(nodeName:any)
     {
-        return BaseLocalService.run(this.storageName,{action:'saveSelectedNode',data:{nodeName}})
+        return BaseLocalService.run(this.storageName,{action:'saveSelectedNode',data:nodeName})
     }
     static getSelectedNode(chainId:any)
     {
-        return BaseLocalService.run(this.storageName,{action:'getSelectedNode',data:{chainId}})
+        return BaseLocalService.run(this.storageName,{action:'getSelectedNode',data:chainId})
     }
 }
