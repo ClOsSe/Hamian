@@ -69,8 +69,8 @@ export default class AccountList extends Vue{
         colors: ["#0a869f"],
         plotOptions: {
           radialBar: {
-            startAngle: 0,
-            endAngle: 360,
+            startAngle: -90,
+            endAngle: 90,
             track: {
               background: "#e7e7e7",
               strokeWidth: "90%",
@@ -112,8 +112,8 @@ export default class AccountList extends Vue{
         colors: ["#001dc3"],
         plotOptions: {
           radialBar: {
-            startAngle: 0,
-            endAngle: 360,
+            startAngle: -90,
+            endAngle: 90,
             track: {
               background: "#e7e7e7",
               strokeWidth: "90%",
@@ -155,8 +155,8 @@ export default class AccountList extends Vue{
         colors: ["#046011"],
         plotOptions: {
           radialBar: {
-            startAngle: 0,
-            endAngle: 360,
+            startAngle:-90,
+            endAngle: 90,
             track: {
               background: "#e7e7e7",
               strokeWidth: "90%",
