@@ -100,7 +100,7 @@ export default class AddNewAccount extends Vue{
     
     addNetwork(model:NetworkModel)
     {
-        this.selectedNet=this.$store.state.currentTet;
+        this.selectedNet=this.$store.state.currentNet;
         this.account=new StorageAccountModel();
         this.account.chainId=model.chainId;
         this.account.blockchain=model.type;  
