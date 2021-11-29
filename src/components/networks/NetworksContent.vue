@@ -169,6 +169,15 @@ export default class NetworksContent extends Vue{
   }
   async getAccounts(){
     this.data.accountList = await WalletService.getAccounts();
+    // for(let acc in this.data.accountList){
+    //     if(this.data.accountList[acc].chainId != this.$store.state.currentNet.chainId)
+    //     {
+    //          TODO:remove this.data.accountList[acc]
+    //         console.log('this.data.accountList',this.data.accountList)
+    //     }
+    // }
+    // console.log(this.data.accountList[0].chainId)
+    // console.log(this.$store.state.currentNet.chainId)
     this.counter++;
   }
   sendEntireBalance(){}
