@@ -32,26 +32,37 @@
               </router-link>
             </div>
             
-            <b-form class="p-2" @submit.prevent="tryToLogIn">
+            <b-form class="p-2" @submit.prevent="accept">
             <div  class="col-12 row" align="center">
             <h5 class="text-primary">via {{data.origin}}</h5>
                 <b-dropdown  variant="outline-secondary " id="dropdown-1" :text="selectedAccount.name" class="m-md-2 w-100">
                     <div class="col-12" v-for="(userAccount , index) in account" :key="index">
-                    <b-dropdown-item  class="col-12 w-100"
+                    <b-dropdown-item @click="selectedAccount=userAccount;counter++" class="col-12 w-100"
                     >{{userAccount.name}}</b-dropdown-item>
                     </div>
                 </b-dropdown>
             </div>
               <div class="mt-5 d-grid">
-                <b-button type="submit" variant="primary" class="btn-block"
-                  >Log In</b-button
+                <b-button @click="accept" variant="primary" class="btn-block"
+                  >Accept</b-button
+                >
+                <b-button @click="Deny" variant="outline-secondary" class="btn-block my-2"
+                  >Deny</b-button
                 >
               </div>
-              <div class="mt-5 text-center">
+              <div class="text-center row col-12 my-5">
+                <p  class="text-primary pointer" @click="addToBlackList()" >
+                  Add 
+                    <span v-if="data">{{data.origin}}</span>
+                  to black list
+                </p>
+              </div>
+              <div class="my-1 text-center">
                 <p class="text-gray">By logging into this application you will be allowing in to interact with your Hamian.</p>
               </div>
             </b-form>
           </div>
+          
           <!-- end card-body -->
         </div>
         <!-- end card -->
@@ -62,16 +73,16 @@
       <!-- end col -->
     </div>
     <!-- end row -->
-    <div class="col-12" v-if="showConfirm == true">
+    <div class="col-12" v-show="showConfirm">
         <Confirm  
         v-model="showConfirm"
         acceptColor="red"
-        rejectColor="white"
-        @accept="acceptAddToBlackList()" 
-        @reject="rejectAddToBlackList()" 
+        @confirm="acceptAddToBlackList()" 
+        @cancel="rejectAddToBlackList()" 
         title="Warning" 
-        :description="`Are you sure you whant to add` + data.origin + `to blacklist`" />
+        :description="`Are you sure you whant to add ` + data.origin + ` to blacklist`" />
     </div>
+        <!-- :acceptText="`Are you sure you whant to add` + data.origin + `to blacklist`" -->
   </Layout>
 </template>
 
@@ -118,18 +129,20 @@ export default class LocalLogin extends Vue{
   accept()
   {
     var lres=new LoginResponse(this.data,this.selectedAccount)
+    console.log('lres',lres)
     
     var appkey=this.data.appkey;
-    // var chinid=this.data.chainId;
+    console.log('appkey',appkey)
     lres.key=appkey;//+chinid;
     WalletService.saveConnection(lres)
     SocketService.sendData(this.data,lres);
     var window = remote.getCurrentWindow();
-       window.close();
+    window.close();
     
   }
   Deny(){
-    console.log('deny')
+    console.log('deny');
+    window.close();
   }
   addToBlackList(){
     console.log(this.showConfirm);
@@ -151,4 +164,7 @@ export default class LocalLogin extends Vue{
  width: 100%;   
  text-align: center;
 }    
+.pointer{
+  cursor: pointer;
+}
 </style>
