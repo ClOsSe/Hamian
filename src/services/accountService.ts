@@ -22,4 +22,7 @@ export default class AccountService
             return acc.rows[0].balance
         return "0.0000 DRIC";  
     }
+    static async getTokensList(){
+        return BaseServices.get(Config.server+'web/getOptions?table=tokens',)
+    }
 }
