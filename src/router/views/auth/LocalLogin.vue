@@ -15,7 +15,6 @@
               <div class="col-5 align-self-end">
                 <img
                   src="@/assets/images/profile-img.png"
-                  alt
                   class="img-fluid"
                 />
               </div>
@@ -23,7 +22,7 @@
           </div>
           <div class="card-body pt-0">
             <div>
-              <router-link tag="a" to="/">
+              <router-link tag="a" to="#" >
                 <div class="avatar-md profile-user-wid mb-4">
                   <span class="avatar-title rounded-circle bg-light">
                     <img src="@/assets/picture/hamian.svg" alt height="34" />
@@ -35,9 +34,15 @@
             <b-form class="p-2" @submit.prevent="accept">
             <div  class="col-12 row" align="center">
             <h5 class="text-primary">via {{data.origin}}</h5>
-                <b-dropdown  variant="outline-secondary " id="dropdown-1" :text="selectedAccount.name" class="m-md-2 w-100">
+                <b-dropdown style="min-height:30px"  variant="outline-secondary " id="dropdown-1" 
+                :text="selectedAccount.name" class="m-md-2 w-100">
+                  <template v-slot:button-content>
+                        <span v-show="!isSelected">Select your account</span>
+                        <span v-show="isSelected">{{selectedAccount.name}}</span>
+                        <i class="mdi mdi-chevron-down"></i>
+                    </template>
                     <div class="col-12" v-for="(userAccount , index) in account" :key="index">
-                    <b-dropdown-item @click="selectedAccount=userAccount;counter++" class="col-12 w-100"
+                    <b-dropdown-item @click="selecteAccount(userAccount)" class="col-12 w-100"
                     >{{userAccount.name}}</b-dropdown-item>
                     </div>
                 </b-dropdown>
@@ -98,7 +103,7 @@ import StorageAccountModel from "@/models/storage/accountModel";
 import Confirm from '@/components/common/Confirm.vue'
 import WalletService from "@/localService/walletService";
 // const remote = require('electron').remote;
-const remote = window.require('electron');
+// const remote = window.require('electron');
 // import {remote} from 'electron'
 
 @Component({
@@ -112,7 +117,13 @@ export default class LocalLogin extends Vue{
   selectedAccount:StorageAccountModel=new StorageAccountModel();
   account:StorageAccountModel[]=[];
   showConfirm:boolean=false;
+  isSelected:boolean=false;
   counter:number=0;
+  selecteAccount(userAccount:any){
+    this.selectedAccount = userAccount;
+    this.counter++
+    this.isSelected = true;
+  }
   async reciveLoginRequest(data:any)
   {
     this.data=new LoginRequest(data);
@@ -128,16 +139,31 @@ export default class LocalLogin extends Vue{
   }
   accept()
   {
-    var lres=new LoginResponse(this.data,this.selectedAccount)
-    console.log('lres',lres)
-    
-    var appkey=this.data.appkey;
-    console.log('appkey',appkey)
-    lres.key=appkey;//+chinid;
-    WalletService.saveConnection(lres)
-    SocketService.sendData(this.data,lres);
-    var window = remote.getCurrentWindow();
-    window.close();
+    if(this.isSelected)
+    { 
+      var lres=new LoginResponse(this.data,this.selectedAccount)
+      var appkey=this.data.appkey;
+      lres.key=appkey;//+chinid;
+      WalletService.saveConnection(lres)
+      SocketService.sendData(this.data,lres);
+        this.$notify({
+          group: 'foo',
+          type: 'success',
+          title: this.data.origin,
+          text: 'Account successfully added'
+      });
+      setTimeout(() => {
+        window.close();
+      }, 1400);
+    }
+    else{
+       this.$notify({
+          group: 'foo',
+          type: 'warn',
+          title: 'Warning',
+          text: 'Please Select a Account'
+      });
+    }
     
   }
   Deny(){
