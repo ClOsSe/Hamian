@@ -4,6 +4,7 @@
         <div class="col-12 d-flex">
           <div class="col box" >
               <div class="text-center">
+                  <h5 class="font-size-15 mb-4">RAM</h5>
                   <apexchart 
                   class="apex-charts"
                   type="radialBar"
@@ -17,6 +18,7 @@
           </div>
           <div class="col box" >
               <div class="text-center">
+                  <h5 class="font-size-15 mb-4">CPU</h5>
                   <apexchart 
                   class="apex-charts"
                   type="radialBar"
@@ -30,6 +32,7 @@
           </div>
           <div class="col box" >
               <div class="text-center">
+                  <h5 class="font-size-15 mb-4">NET</h5>
                   <apexchart 
                   class="apex-charts"
                   type="radialBar"
