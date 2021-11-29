@@ -30,6 +30,7 @@ export default class AccountList extends Vue{
         account.chainId=this.$store.state.currentNet.chainId;
         let chain = StorageService.getSelectedNode(account.chainId)
         if(chain){
+            console.log(account)
             var data =  await StorageService.saveSelectedAccount(account);
             if(data.message == true){
                 this.$notify({

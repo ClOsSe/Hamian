@@ -32,10 +32,18 @@ export default [
   },
   {
     path: '/LocalLogin',
-    name: 'locallogin',
+    name: 'LocalLogin',
     meta:{isPublic:true},
     component: () => import('./views/auth/LocalLogin.vue')
   },
+  // {
+  //   path: '/login',
+  //   // component: () => import('./layouts/auth.vue'),
+  //   children: [
+  //     // { path: '', component: () => import('./views/auth/Login.vue'),name:'Login',meta:{isPublic:true} },
+  //     { path: 'local', component: () => import('./views/auth/LocalLogin.vue'),name:'LocalLogin' },
+  //   ],
+  // },
   
   {
     path: '/ReLink',

@@ -34,6 +34,7 @@
             
             <b-form class="p-2" @submit.prevent="tryToLogIn">
             <div  class="col-12 row" align="center">
+            <h5 class="text-primary">via {{data.origin}}</h5>
                 <b-dropdown  variant="outline-secondary " id="dropdown-1" :text="selectedAccount.name" class="m-md-2 w-100">
                     <div class="col-12" v-for="(userAccount , index) in account" :key="index">
                     <b-dropdown-item  class="col-12 w-100"
@@ -103,10 +104,11 @@ export default class LocalLogin extends Vue{
   counter:number=0;
   async reciveLoginRequest(data:any)
   {
-    console.log('----------------->>>>>>>>',data)
-      this.data=new LoginRequest(data);
+    this.data=new LoginRequest(data);
+    console.log('----------------->>>>>>>>',this.data)
       console.log('>>>>>>>>',this.data.chainId,await WalletService.getAccounts())
       this.account=(await WalletService.getAccounts()).filter(p=>p.chainId==this.data.chainId);
+      console.log('this.account',this.account)
       this.counter++;
 
   }
