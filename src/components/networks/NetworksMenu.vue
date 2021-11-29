@@ -25,8 +25,8 @@
                         class="text-body d-flex align-items-center"
                       >
                         <i 
-                            class="mdi mdi-view-list-outline font-size-16  me-2"
-                            :class="selected != 'accountList' ? 'text-body':'text-primary'"
+                            class="mdi mdi-view-list-outline f"
+                            :class="selected != 'accountList' ? 'text-body ont-size-16  me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Account List</span>
                       </a>
@@ -37,8 +37,8 @@
                         class="text-body d-flex align-items-center"
                       >
                         <i
-                          class="mdi mdi-source-merge font-size-16 me-2"
-                            :class="selected != 'resources' ? 'text-body':'text-primary'"
+                          class="mdi mdi-source-merge "
+                            :class="selected != 'resources' ? 'text-body font-size-16 me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Resources</span>
                       </a>
@@ -48,8 +48,8 @@
                         href="javascript: void(0);"
                         class="text-body d-flex align-items-center"
                       >
-                        <i class="mdi mdi-chip font-size-16 me-2"
-                            :class="selected != 'buySellRAM' ? 'text-body':'text-primary'"
+                        <i class="mdi mdi-chip "
+                            :class="selected != 'buySellRAM' ? 'text-body font-size-16 me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Buy/Sell RAM</span>
                       </a>
@@ -61,8 +61,8 @@
                       >
 
                         <i 
-                            class="mdi mdi-cpu-64-bit  font-size-16 me-2"
-                            :class="selected != 'stakeCpuNet' ? 'text-body':'text-primary'"    
+                            class="mdi mdi-cpu-64-bit  "
+                            :class="selected != 'stakeCpuNet' ? 'text-body font-size-16 me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Stake CPU/NET</span>
                       </a>
@@ -73,8 +73,8 @@
                         class="text-body d-flex align-items-center"
                       >
                         <i
-                          class="mdi mdi-trash-can  font-size-16 me-2"
-                          :class="selected != 'tokens' ? 'text-body':'text-primary'"
+                          class="mdi mdi-trash-can  "
+                          :class="selected != 'tokens' ? 'text-body font-size-16 me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Tokens</span>
                       </a>
@@ -85,8 +85,8 @@
                         class="text-body d-flex align-items-center"
                       >
                         <i 
-                            class="mdi mdi-swap-horizontal font-size-16 me-2"
-                            :class="selected != 'transferToken' ? 'text-body':'text-primary'"
+                            class="mdi mdi-swap-horizontal "
+                            :class="selected != 'transferToken' ? 'text-body font-size-16 me-2':'text-primary font-size-16 me-3'"
                         ></i>
                         <span class="me-auto">Transfer Token</span
                         ><span class="badge badge-success badge-pill ms-2"
