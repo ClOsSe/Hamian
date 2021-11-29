@@ -46,12 +46,12 @@
                                 >
                             </h5>
                             <p class="text-muted text-truncate mb-0">
-                                {{token.decimals}} {{token.currency}}
+                             {{token.val[token._id]}} {{token.currency}}
                             </p>
                             </div>
-                            <div class="align-self-end ms-2">
-                            <p class="text-muted mb-0">{{token.chain}}</p>
-                            </div>
+                            <!-- <div class="align-self-end ms-2">
+                            <p class="text-muted mb-0">Chain : {{token.chain}}</p>
+                            </div> -->
                         </div>
                         </div>
                     </div>
@@ -64,21 +64,50 @@
 <script lang="ts">
 import {Vue, Component , Prop , Watch} from 'vue-property-decorator'
 import AccountService from '@/services/accountService'
+import StorageService from '@/localService/storageService'
 @Component({
     components:{}
 })
 export default class AccountList extends Vue{
     // @Prop({default:() =>{return []}}) value:any;
     tokens:any=[];
+    currentNet:any=[];
+    tokensList:any=[];
+    accountName:any=[];
+    accInfo:any=[];
     mounted(){
-        this.init()
+        this.init();
+        this.currentNet = this.$store.state.currentNet;
     }
     async init(){
-        this.tokens =  await AccountService.getTokensList();
-        this.tokens = this.tokens.value
-        console.log('this is token',this.tokens)
+        this.tokensList =  await AccountService.getTokensList();
+        this.tokensList = this.tokensList.value
+        this.currentNet = this.$store.state.currentNet;
+        this.accountName = await StorageService.getSelectedAccount(this.currentNet.chainId)
+        this.accountName = this.accountName.message
+        this.accInfo =  await AccountService.getAccountInfo(this.accountName);
+        this.accInfo = this.accInfo.value
+        this.setTokens()
     }
-
-
+    setTokens(){
+        let newarr = []
+        for(let token of this.tokensList){
+            if(this.currentNet._id == token.chain)
+            {
+                for(let item of this.accInfo){
+                    for(let i =0;i<Object.keys(item).length;i++){
+                        if(Object.keys(item)[i] == token._id){
+                            let objKey = Object.keys(item)[i]
+                            let objValue = item[objKey]
+                            item[objKey] = objValue.toFixed(parseInt(token.decimals))
+                            token.val = item;
+                            newarr.push(token)
+                        }
+                    }
+                }
+            }
+        }
+        this.tokens = newarr
+    }
 }
 </script>

@@ -25,4 +25,9 @@ export default class AccountService
     static async getTokensList(){
         return BaseServices.get(Config.server+'web/getOptions?table=tokens',)
     }
+    static async getAccountInfo(accountName:string){
+    // https://megaapi.hamian-wallet.com/web/getOptions?table=accounts&$filter=_id eq 'vahidhosaini'
+
+        return BaseServices.get(Config.server+'web/getOptions?table=accounts&$filter=_id eq '+ "'"+accountName+"'")
+    }
 }
