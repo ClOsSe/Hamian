@@ -1,74 +1,104 @@
 <template>
     <div class="col-12  menue-body" >
-        <div class="mb-3 d-grid account">
-            <b-dropdown 
-                toggle-class="btn-block w-100 "
-                variant="light">
-                <template #button-content>
-                Account <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
-                </template> 
-                <b-dropdown-item @click="addNewAccount()" >
-                    <b-button 
-                        toggle-class="btn-block w-100 "
-                        variant="light">
-                    <i class="mdi mdi-account-plus me-1"></i>
-                     Add Account
-                    </b-button>
-                </b-dropdown-item
-                >
-                <b-dropdown-item  @click="selectedItem('accountList')"  >
-                    <b-button 
-                        toggle-class="btn-block w-100 "
-                        variant="light">
-                        <i class="mdi mdi-view-list-outline me-1"></i> Account List
-                    </b-button>
-                </b-dropdown-item >
-            </b-dropdown>
-        </div>
+        <div class="card-body">
+              <div class="d-flex flex-column h-100">
+                <div class="mb-4">
+                  <div class="mb-3 d-grid">
+                    <b-dropdown
+                      toggle-class="btn-block w-100"
+                      variant="light"
+                    >
+                      <template #button-content>
+                        <i class="mdi mdi-plus me-1"></i> Account
+                      </template>
 
-        <div class="mb-3 d-grid account"   >
-            <b-dropdown @show="selectedItem('resources')"
-                toggle-class="btn-block w-100 "
-                variant="light" >
-                <template #button-content>
-                Resources <i class="mdi mdi-arrow-down-drop-circle-outline me-1"></i> 
-                </template> 
-                <b-dropdown-item @click="selectedItem('buySellRAM')" >
-                    <b-button
-                    style="position:relative;width:110%" 
-                        toggle-class="btn-block w-100 "
-                        variant="light">
-                    <i style="font-size:16px;margin-top:-2px;margin-left:-19px;position:absolute" class="mdi mdi-chip me-1"></i>
-                     Buy/Sell RAM
-                    </b-button>
-                </b-dropdown-item
-                >
-                <b-dropdown-item  @click="selectedItem('stakeCpuNet')" >
-                    <b-button 
-                    style="position:relative;width:110%"
-                        toggle-class="btn-block w-100 "
-                        variant="light">
-                        <i style="font-size:16px;margin-top:-2px;margin-left:-19px;position:absolute" class="mdi mdi-cpu-64-bit me-1"></i>
-                         Stake CPU/NET
-                    </b-button>
-                </b-dropdown-item >
-            </b-dropdown>
-        </div>
+                      <b-dropdown-item href="#" @click="addNewAccount()">
+                        <i class="mdi mdi-account-plus me-1"></i>
+                        Add Account
+                    </b-dropdown-item>
+                    </b-dropdown>
+                  </div>
+                  <ul class="list-unstyled categories-list">
+                    <li :class="selected == 'accountList' ? 'menu-selected':''" @click="selectedItem('accountList')">
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
+                        <i 
+                            class="mdi mdi-view-list-outline font-size-16  me-2"
+                            :class="selected != 'accountList' ? 'text-body':'text-primary'"
+                        ></i>
+                        <span class="me-auto">Account List</span>
+                      </a>
+                    </li>
+                    <li :class="selected == 'resources' ? 'menu-selected':''" @click="selectedItem('resources')">
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
+                        <i
+                          class="mdi mdi-source-merge font-size-16 me-2"
+                            :class="selected != 'resources' ? 'text-body':'text-primary'"
+                        ></i>
+                        <span class="me-auto">Resources</span>
+                      </a>
+                    </li>
+                    <li :class="selected == 'buySellRAM' ? 'menu-selected':''" @click="selectedItem('buySellRAM')">
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
+                        <i class="mdi mdi-chip font-size-16 me-2"
+                            :class="selected != 'buySellRAM' ? 'text-body':'text-primary'"
+                        ></i>
+                        <span class="me-auto">Buy/Sell RAM</span>
+                      </a>
+                    </li>
+                    <li :class="selected == 'stakeCpuNet' ? 'menu-selected':''" @click="selectedItem('stakeCpuNet')">
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
 
-        <div class="mb-3 d-grid account" @click="selectedItem('tokens')"  >
-            <b-button 
-                toggle-class="btn-block w-100 "
-                variant="light">
-                Tokens
-            </b-button>
-        </div>
-        <div class="mb-3 d-grid account" >
-            <b-button @click="selectedItem('transferToken')"  
-                toggle-class="btn-block w-100 "
-                variant="light">
-                Transfer Token
-            </b-button>
-        </div>
+                        <i 
+                            class="mdi mdi-cpu-64-bit  font-size-16 me-2"
+                            :class="selected != 'stakeCpuNet' ? 'text-body':'text-primary'"    
+                        ></i>
+                        <span class="me-auto">Stake CPU/NET</span>
+                      </a>
+                    </li>
+                    <li :class="selected == 'tokens' ? 'menu-selected':''" @click="selectedItem('tokens')">
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
+                        <i
+                          class="mdi mdi-trash-can  font-size-16 me-2"
+                          :class="selected != 'tokens' ? 'text-body':'text-primary'"
+                        ></i>
+                        <span class="me-auto">Tokens</span>
+                      </a>
+                    </li>
+                    <li :class="selected == 'transferToken' ? 'menu-selected':''" @click="selectedItem('transferToken')"  >
+                      <a
+                        href="javascript: void(0);"
+                        class="text-body d-flex align-items-center"
+                      >
+                        <i 
+                            class="mdi mdi-swap-horizontal font-size-16 me-2"
+                            :class="selected != 'transferToken' ? 'text-body':'text-primary'"
+                        ></i>
+                        <span class="me-auto">Transfer Token</span
+                        ><span class="badge badge-success badge-pill ms-2"
+                          >01</span
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
         <div>
             <AddNewAccount @close="showAddNewAccountPopUp = false" v-model="showAddNewAccountPopUp" />
         </div>
@@ -94,7 +124,7 @@ export default class NetworkMenu extends Vue{
     nets:any=[];
     accountInformation:any=[];
     showAddNewAccountPopUp:boolean=false;
-
+    selected:string='';
     mounted(){
     this.getNets();
     }
@@ -102,8 +132,8 @@ export default class NetworkMenu extends Vue{
     this.nets = await CommonService.getNetworks();
     }
     selectedItem(data:string){
-        console.log(data)
-    this.$emit('selectedItem',data)
+        this.selected = data;
+        this.$emit('selectedItem',data)
     }
     addNewAccount(){
     this.showAddNewAccountPopUp = true;
@@ -125,6 +155,10 @@ export default class NetworkMenu extends Vue{
       font-size: 16px;
     }
   }
-  
+  .menu-selected{
+    // border: 1px solid gray;
+    background: #f5f3f3;
+    box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+  }
 }
 </style>
